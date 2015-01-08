@@ -1,0 +1,13 @@
+# Site settings
+title: don't shoot
+description: This is don't shoot.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://dontshoot.at" # the base hostname & protocol for your site
+permalink: /:title/
+
+markdown: kramdown
+
+sass:
+  # style: :compressed
+  style: :compact
+  sass_dir: assets/_sass

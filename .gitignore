@@ -1,2 +1,5 @@
 .bundle
-vendor/
+vendor
+!jekyll/assets/_sass/vendor
+jekyll/_site
+jekyll/.sass-cache
