@@ -1,18 +1,23 @@
 ---
 layout: default
 ---
-<div class="home">
-  <h1 class="page-heading">Posts</h1>
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+{% for post in paginator.posts %}
+<article itemscope itemtype="http://schema.org/Article">
+  <header>
+    <h1 itemprop="name"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+    <div class="metadata">
+      Veröffentlicht am <time itemprop="datePublished" datetime="{{post.date | date_to_xmlschema}}">{{ post.date | date: "%-d. %B %Y" | replace:"January","Jänner" | replace:"Februar","February" | replace:"March","März" | replace:"May","Mai" | replace:"June","Juni" | replace:"July","Juli" | replace:"October","Oktober" | replace:"December","Dezember" }}</time>. <span itemscope itemprop="author" itemtype="http://schema.org/Person">Von <span itemprop="name" class="author fn">{% if post.author %}{{ post.author }}{% else %}Florian Bock{% endif %}</span></span>.
+    </div>
+  </header>
+{{ post.excerpt }}
+{% assign excwords = post.excerpt | number_of_words %}{% assign artwords = post.content | number_of_words %}{% if excwords < artwords %}
+<a href="{{ post.url | prepend: site.baseurl }}">Weiterlesen&hellip;</a>{% endif %}
+</article>
+{% endfor %}
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+{% if paginator.previous_page %}  <a href="{{paginator.previous_page_path | remove: "index.html" }}" class="previous">&#8592; Neuere Beitr&auml;ge</a>{% endif %}
+{% if paginator.next_page %}  <a href="{{paginator.next_page_path}}" class="next">&Auml;ltere Beitr&auml;ge &#8594;</a>{% endif %}
 </div>
+{% endif %}
