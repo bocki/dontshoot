@@ -1,22 +1,20 @@
-<header class="site-header">
-
-  <div class="wrapper">
-
-    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+<header>
+  <a href="{{ site.baseurl }}/">
+    <h1>
+      <svg width="96" height="96">
+        <image xlink:href="/assets/img/logo.svg" src="assets/img/logo.png" width="96" height="96" />
+      </svg>
+      {{ site.title }}
+    </h1>
+  </a>
 
     <nav class="site-nav">
-      <div>
-        <svg width="96" height="96">
-          <image xlink:href="/assets/img/logo.svg" src="assets/img/logo.png" width="96" height="96" />
-        </svg>
-      </div>
+      <!-- 
       <div class="trigger">
         {% for page in site.pages %}{% if page.title %}
           <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
           {% endif %}{% endfor %}
-      </div>
+      </div> -->
     </nav>
-
-  </div>
 
 </header>
