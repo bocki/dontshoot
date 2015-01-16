@@ -10,8 +10,39 @@
   "vendor/neat/neat"
 ;
 
+$break-small: 539px;
+$break-large: 800px;
 
-body {
+@mixin respond-to($media) {
+  @if $media == s {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == m {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == l {
+    @media only screen and (min-width: $break-large + 1) { @content; }
+  }
+}
+
+#main {
   max-width: 60%;
+  @include respond-to(s) { max-width: 85%; }
+  @include respond-to(m) { max-width: 75%; }
   margin: 1em auto;
+}
+
+.site-title {
+  display: block;
+  height: 96px;
+  margin-bottom: 1em;
+  
+  h1 {
+    * { float: left; }
+    span {
+      // Überschrift
+      padding-top: 55px; 
+      padding-left: 0.2em;
+    }
+  }
 }
